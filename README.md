@@ -30,8 +30,8 @@
 ### 1. Clone the repository:
 
 ```bash
-git clone https://github.com/Keliztan20/delivery-time-prediction-ML.git
-cd delivery-time-prediction-ML
+git clone https://github.com/Keliztan20/delivery-time-predictor.git
+cd delivery-time-predictor
 ```
 
 ### 2. Install dependencies:
