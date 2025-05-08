@@ -27,23 +27,16 @@
 - Cached predictions for performance
 
 ### Setup Instructions
-### 1. Create and activate a virtual environment:
-
-```bash
-# Linux / macOS
-python -m venv venv
-source venv/bin/activate
-
-# Windows
-python -m venv venv
-venv\Scripts\activate
-````
-
-### 2. Clone the repository:
+### 1. Clone the repository:
 
 ```bash
 git clone https://github.com/Keliztan20/delivery-time-prediction-ML.git
 cd delivery-time-prediction-ML
+```
+### 2. Install dependencies:
+
+```bash
+python assets\LightGBM.py
 ```
 
 ### 3. Install dependencies:
