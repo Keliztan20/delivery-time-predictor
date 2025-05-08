@@ -5,3 +5,4 @@ __pycache__/
 venv/
 assets/train.csv
 assets/test.csv
+assets/Delivery_time_predictor.h5
