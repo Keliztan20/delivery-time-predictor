@@ -39,3 +39,8 @@
 ```bash
 git clone https://github.com/Keliztan20/delivery-time-prediction-ML.git
 cd delivery-time-prediction-ML
+
+2. Install dependencies:
+pip install --upgrade pip
+pip install -r requirements.txt
+
