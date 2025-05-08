@@ -34,13 +34,37 @@
 - pip package manager
 
 ### Setup Instructions
+### 1. Create and activate a virtual environment:
 
-1. Clone the repository:
+```bash
+# Linux / macOS
+python -m venv venv
+source venv/bin/activate
+
+# Windows
+python -m venv venv
+venv\Scripts\activate
+````
+
+### 2. Clone the repository:
+
 ```bash
 git clone https://github.com/Keliztan20/delivery-time-prediction-ML.git
 cd delivery-time-prediction-ML
+```
 
-2. Install dependencies:
+### 3. Install dependencies:
+
+```bash
 pip install --upgrade pip
 pip install -r requirements.txt
+```
+
+### 4. Run the application:
+
+```bash
+streamlit run app.py
+```
+
+
 
