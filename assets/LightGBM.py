@@ -9,8 +9,8 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 def load_and_split_data(filepath, target_column='Time_taken', test_size=0.2, encoding='latin-1'):
     df = pd.read_csv(filepath, encoding=encoding)
     train_df, test_df = train_test_split(df, test_size=test_size, random_state=42)
-    train_df.to_csv('train.csv', index=False)
-    test_df.to_csv('test.csv', index=False)
+    train_df.to_csv('assets/train.csv', index=False)
+    test_df.to_csv('assets/test.csv', index=False)
     return train_df, test_df
 
 
@@ -91,7 +91,7 @@ def main():
     print(metrics_df.to_markdown(index=False))
 
     print("Saving model to 'Delivery_time_predictor.h5'...")
-    model.save_model('Delivery_time_predictor.h5', num_iteration=model.best_iteration)
+    model.save_model('assets/Delivery_time_predictor.h5', num_iteration=model.best_iteration)
     print("Done.")
 
 
