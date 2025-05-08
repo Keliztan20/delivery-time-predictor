@@ -1,6 +1,6 @@
 # 🚚 Delivery Time Predictor
 
-![App Screenshot](https://via.placeholder.com/800x500/2D3748/FFFFFF?text=Delivery+Time+Predictor+Dashboard)
+![image](https://github.com/user-attachments/assets/db4706d8-4d5c-4564-aa72-08abdb378ce3) ![image](https://github.com/user-attachments/assets/60f0f4f0-bee3-4f03-92ba-bd9842ffc333)
 *A Streamlit web application for predicting delivery times using machine learning*
 
 ## 🌟 Features
