@@ -37,5 +37,5 @@
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/delivery-time-predictor.git
-cd delivery-time-predictor
+git clone https://github.com/Keliztan20/delivery-time-prediction-ML.git
+cd delivery-time-prediction-ML
