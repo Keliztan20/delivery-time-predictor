@@ -33,17 +33,17 @@
 git clone https://github.com/Keliztan20/delivery-time-prediction-ML.git
 cd delivery-time-prediction-ML
 ```
+
 ### 2. Install dependencies:
-
-```bash
-python assets\LightGBM.py
-```
-
-### 3. Install dependencies:
 
 ```bash
 pip install --upgrade pip
 pip install -r requirements.txt
+```
+### 3. Save Model:
+
+```bash
+python assets\LightGBM.py
 ```
 
 ### 4. Run the application:
