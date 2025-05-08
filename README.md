@@ -19,19 +19,12 @@
 ### 📊 Analytics
 - Average delivery time calculation
 - Longest delivery identification
-- Data visualization (coming soon)
 
 ### 🛠️ Technical Features
 - LightGBM machine learning model
 - Modular Python architecture
 - Responsive Streamlit UI
 - Cached predictions for performance
-
-## 🛠️ Installation
-
-### Prerequisites
-- Python 3.8+
-- pip package manager
 
 ### Setup Instructions
 ### 1. Create and activate a virtual environment:
