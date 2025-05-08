@@ -39,6 +39,10 @@ cd delivery-time-prediction-ML
 ```bash
 pip install --upgrade pip
 pip install -r requirements.txt
+
+or
+
+dependencies.bat double click
 ```
 ### 3. Save Model:
 
@@ -51,9 +55,9 @@ python assets\LightGBM.py
 ```bash
 streamlit run app.py
 ```
-
-### 5. Run the application:
+### 5. Alternate Method 3 & 4:
 
 ```bash
-run_all.bat double click
+run_app.bat double click
 ```
+
