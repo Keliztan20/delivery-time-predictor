@@ -52,5 +52,8 @@ python assets\LightGBM.py
 streamlit run app.py
 ```
 
+### 5. Run the application:
 
-
+```bash
+run_all.bat double click
+```
