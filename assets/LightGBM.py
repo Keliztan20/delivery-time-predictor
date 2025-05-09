@@ -94,6 +94,20 @@ def main():
     model.save_model('assets/Delivery_time_predictor.h5', num_iteration=model.best_iteration)
     print("Done.")
 
+    # File: model_converter.py
+    import lightgbm as lgb
+    import joblib
+
+    # Convert your .h5 model to reliable formats
+    try:
+        model = lgb.Booster(model_file='assets/Delivery_time_predictor.h5')
+    except:
+        with open('assets/Delivery_time_predictor.h5', 'rb') as f:
+            model = lgb.Booster(model_str=f.read())
+
+    # Save in multiple formats
+    model.save_model('assets/Delivery_time_predictor.txt')  # LightGBM native format
+    joblib.dump(model, 'assets/Delivery_time_predictor.joblib')  # Joblib format
 
 # ---------------------- 6. Entry Point ----------------------
 if __name__ == '__main__':

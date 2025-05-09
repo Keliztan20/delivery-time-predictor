@@ -9,7 +9,14 @@ from utils.config import (
 
 @st.cache_resource(ttl=3600)
 def load_model():
-    return lgb.Booster(model_file=MODEL_PATH)
+    # Replace model loading with this robust version
+    try:
+        import joblib
+        model = joblib.load('assets/Delivery_time_predictor.joblib')
+    except:
+        import lightgbm as lgb
+        model = lgb.Booster(model_file='assets/Delivery_time_predictor.txt')
+    return model
 
 def predict_single(model, input_features):
     input_df = pd.DataFrame([input_features])
