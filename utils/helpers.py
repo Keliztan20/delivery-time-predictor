@@ -7,7 +7,7 @@ from utils.config import (
     MODEL_PATH
 )
 
-@st.cache_resource
+@st.cache_resource(ttl=3600)
 def load_model():
     return lgb.Booster(model_file=MODEL_PATH)
 
