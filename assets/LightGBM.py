@@ -90,7 +90,7 @@ def main():
     print("\nPerformance Metrics:")
     print(metrics_df.to_markdown(index=False))
 
-    print("Saving model to 'Delivery_time_predictor.h5'...")
+    print("\nSaving model to 'Delivery_time_predictor.h5'...")
     model.save_model('assets/Delivery_time_predictor.h5', num_iteration=model.best_iteration)
     print("Done.")
 
