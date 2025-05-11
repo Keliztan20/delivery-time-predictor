@@ -21,4 +21,4 @@ TRAFFIC_MAPPING = {
 }
 
 # Model path
-MODEL_PATH = 'assets/Delivery_time_predictor.txt'
+MODEL_PATH = 'assets/Delivery_time_predictor.h5'
