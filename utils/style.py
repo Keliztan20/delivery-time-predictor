@@ -9,7 +9,7 @@ def load_css():
             color:white;
         }
         .stNumberInput, .stSelectbox, .stSlider {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.5rem !important;
         }
         .metric-card {
             background: #f8f9fa;
@@ -29,7 +29,7 @@ def load_css():
             border-radius: 10px;
             padding: 1.5rem;
             background: #ffffff;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.0.5);
         }
     </style>
     """, unsafe_allow_html=True)
