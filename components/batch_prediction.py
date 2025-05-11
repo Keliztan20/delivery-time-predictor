@@ -177,7 +177,7 @@ def batch_prediction_tab():
             
             # Prediction section
             st.markdown("---")
-            if st.button("🚀 Run Batch Predictions", type="primary", use_container_width=True):
+            if st.button("🚀 Run Batch Predictions", use_container_width=True):
                 with st.spinner('Generating predictions...'):
                     try:
                         required_cols = [

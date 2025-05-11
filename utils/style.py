@@ -8,26 +8,8 @@ def load_css():
             padding: 2rem;
             color:white;
         }
-        .st-co, .st-ck {
-               linear-gradient(to right, rgb(86, 146, 245) 0%, rgb(86, 146, 245) 28.5714%, rgb(86, 146, 245) 28.5714%, rgb(86, 146, 245) 100%); 
-                }
         .stNumberInput, .stSelectbox, .stSlider {
             margin-bottom: 1.5rem;
-        }
-        .stButton>button {
-            background-color: #131720;
-            color: white;
-            border-radius: 8px; 
-            border: 0.5px solid #3d4044;
-            padding: 0.5rem 1rem;
-            width: 100%;
-            transition: all 0.3s;
-        }
-        .stButton>button:hover {
-            background-color: #131730;
-            transform: translateY(-2px);
-            color:#ff4b43;
-            border: 0.5px solid #ff4b43;
         }
         .metric-card {
             background: #f8f9fa;
