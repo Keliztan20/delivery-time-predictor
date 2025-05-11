@@ -77,7 +77,7 @@ def main():
 
 if __name__ == "__main__":
     # Run LightGBM script only once
-    if "lightgbm_initialized" not in st.session_state:
-        subprocess.run(["python", "assets/LightGBM.py"])
-        st.session_state["lightgbm_initialized"] = True
+    # if "lightgbm_initialized" not in st.session_state:
+    #     subprocess.run(["python", "assets/LightGBM.py"])
+    #     st.session_state["lightgbm_initialized"] = True
     main()
