@@ -77,6 +77,7 @@ def single_prediction_tab():
                 with st.expander("Calculation Details"):
                     col10, col11 = st.columns(2)
                     with col10:
+                        st.write("##### `Input Parameters`")
                         st.write(f"- Age: {age}")
                         st.write(f"- Weather: {weather}")
                         st.write(f"- Traffic: {traffic}")
@@ -88,3 +89,4 @@ def single_prediction_tab():
                         st.write(f"- Vehicle Condition: {condition}")
                         st.write(f"- Multiple Deliveries: {multi_deliveries}")
                         st.write(f"- Festival: {'Yes' if festival else 'No'}")
+                        st.write(f"- Vehicle Performance Impact: {VEHICLE_CONDITION_MAPPING[condition] * VEHICLE_TYPE_MAPPING[vehicle_type]}")

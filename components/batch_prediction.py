@@ -151,7 +151,7 @@ def batch_prediction_tab():
             if not has_performance_col:
                 if 'Vehicle_condition' in df.columns:
                     original = df['Vehicle_condition'].head(10).tolist()
-                    df['Vehicle_condition'] = safe_convert(df['Vehicle_condition'], VEHICLE_CONDITION_MAPPING, 2, 'Vehicle Condition')
+                    df['Vehicle_condition'] = safe_convert(df['Vehicle_condition'] + 1, VEHICLE_CONDITION_MAPPING, 2, 'Vehicle Condition')
                     conversion_log.append(("Vehicle Condition", original, df['Vehicle_condition'].head(10).tolist()))
                 
                 if 'Type_of_vehicle' in df.columns:
