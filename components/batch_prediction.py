@@ -72,14 +72,6 @@ def batch_prediction_tab():
             - Others → 4
             """)
     
-    # File uploader with modern styling
-    st.markdown("""
-    <div style="border: 2px dashed #ebfafa; border-radius: 10px; padding: 25px; text-align: center; margin: 20px 0; background-color: #262730;">
-        <h4 style="color: #ebfafa;">Upload Your CSV File</h4>
-        <p style="color: #7f8c8d;">Drag and drop your file here or click to browse</p>
-    </div>
-    """, unsafe_allow_html=True)
-    
     uploaded_file = st.file_uploader(" ", type=["csv"], label_visibility="collapsed")
 
     # Sample data section
@@ -213,7 +205,7 @@ def batch_prediction_tab():
                         
                         # Download options
                         st.markdown("---")
-                        st.markdown("###Download Results")
+                        st.markdown("Download Results")
                         
                         csv = result_df.to_csv(index=False).encode('utf-8')
                         st.download_button(

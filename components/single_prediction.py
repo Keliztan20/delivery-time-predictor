@@ -37,7 +37,7 @@ def single_prediction_tab():
         with col7:
             multi_deliveries = st.slider("Multiple Deliveries", 1, 5, 1)
         with col8:
-            distance = st.number_input("Travel Distance (km)", 0.1, 100.0, 5.0, step=0.1)
+            distance = st.number_input("Travel Distance (km)", 0.1, 100.0, 50.0, step=0.1)
         with col9:
             pickup_time = st.number_input("Pickup Time (minutes)", 0.1, 100.0, 20.0, step=1.0)
         
@@ -46,41 +46,45 @@ def single_prediction_tab():
         submitted = st.form_submit_button("🚚 Predict Delivery Time", use_container_width=True)
     
     if submitted:
-        with st.spinner('Calculating...'):
-            input_features = {
-                'Delivery_person_Age': age,
-                'Delivery_person_Ratings': ratings,
-                'Weather_conditions': WEATHER_OPTIONS.index(weather) + 1,
-                'Road_traffic_density': TRAFFIC_OPTIONS.index(traffic) + 1,
-                'Vehicle_performance_Impact': VEHICLE_CONDITION_MAPPING[condition] * VEHICLE_TYPE_MAPPING[vehicle_type],
-                'multiple_deliveries': multi_deliveries,
-                'Festival': 1 if festival else 0,
-                'Travel_Distance': distance,
-                'pickup_time': pickup_time
-            }
-            
-            prediction = predict_single(model, input_features)
-            
-            st.success("Prediction Complete!")
-            with st.container():
-                st.markdown(f"""
-                <div class="metric-card">
-                    <h4 style="color: #2c3e50; margin-top: 0;">Estimated Delivery Time</h4>
-                    <h1 style="color: #4CAF50; text-align: center;">{prediction:.2f} minutes</h1>
-                </div>
-                """, unsafe_allow_html=True)
-            
-            with st.expander("Calculation Details"):
-                col10, col11 = st.columns(2)
-                with col10:
-                    st.markdown("**Input Parameters**")
-                    st.write(f"- Age: {age}")
-                    st.write(f"- Weather: {weather}")
-                    st.write(f"- Traffic: {traffic}")
-                    st.write(f"- Distance: {distance} km")
-                with col11:
-                    st.write(f"- Ratings: {ratings} ★")
-                    st.write(f"- Type: {vehicle_type}")
-                    st.write(f"- Condition: {condition}")
-                    st.write(f"- Multiple Deliveries: {multi_deliveries}")
-                    st.write(f"- Festival: {'Yes' if festival else 'No'}")
+        # Validate pickup_time vs distance
+        if pickup_time > distance: 
+            st.warning("Pickup time cannot be greater than travel distance!! Please verify your inputs.")
+        else:
+            with st.spinner('Calculating...'):
+                input_features = {
+                    'Delivery_person_Age': age,
+                    'Delivery_person_Ratings': ratings,
+                    'Weather_conditions': WEATHER_OPTIONS.index(weather) + 1,
+                    'Road_traffic_density': TRAFFIC_OPTIONS.index(traffic) + 1,
+                    'Vehicle_performance_Impact': VEHICLE_CONDITION_MAPPING[condition] * VEHICLE_TYPE_MAPPING[vehicle_type],
+                    'multiple_deliveries': multi_deliveries,
+                    'Festival': 1 if festival else 0,
+                    'Travel_Distance': distance,
+                    'pickup_time': pickup_time
+                }
+                
+                prediction = predict_single(model, input_features)
+                
+                st.success("Prediction Complete!")
+                with st.container():
+                    st.markdown(f"""
+                    <div class="metric-card">
+                        <h4 style="color: #2c3e50; margin-top: 0;">Estimated Delivery Time</h4>
+                        <h1 style="color: #4CAF50; text-align: center;">{prediction:.2f} minutes</h1>
+                    </div>
+                    """, unsafe_allow_html=True)
+                
+                with st.expander("Calculation Details"):
+                    col10, col11 = st.columns(2)
+                    with col10:
+                        st.markdown("**Input Parameters**")
+                        st.write(f"- Age: {age}")
+                        st.write(f"- Weather: {weather}")
+                        st.write(f"- Traffic: {traffic}")
+                        st.write(f"- Distance: {distance} km")
+                    with col11:
+                        st.write(f"- Ratings: {ratings} ★")
+                        st.write(f"- Type: {vehicle_type}")
+                        st.write(f"- Condition: {condition}")
+                        st.write(f"- Multiple Deliveries: {multi_deliveries}")
+                        st.write(f"- Festival: {'Yes' if festival else 'No'}")
