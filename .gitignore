@@ -7,4 +7,3 @@ assets/train.csv
 assets/test.csv
 assets/Delivery_time_predictor.h5
 assets/Delivery_time_predictor.joblib
-assets/Delivery_time_predictor.txt

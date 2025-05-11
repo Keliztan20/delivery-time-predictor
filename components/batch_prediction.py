@@ -71,9 +71,6 @@ def batch_prediction_tab():
             - Electric Scooter → 3
             - Bicycle → 4
             """)
-    
-    uploaded_file = st.file_uploader(" ", type=["csv"], label_visibility="collapsed")
-
     # Sample data section
     with st.expander("Show / Download Sample CSV Template", expanded=False):
         sample_data = {
@@ -99,6 +96,8 @@ def batch_prediction_tab():
             use_container_width=True,
             help="Download a template file with sample data"
         )
+    
+    uploaded_file = st.file_uploader(" ", type=["csv"], label_visibility="collapsed")
 
     if uploaded_file is not None:
         try:
@@ -199,12 +198,21 @@ def batch_prediction_tab():
                             
                             col1, col2 = st.columns(2)
                             with col1:
-                                st.metric("Average Delivery Time", f"{result_df['Predicted_Delivery_Time'].mean():.1f} mins")
+                                st.markdown(f"""
+                                    <div class="metric-card" style="background-color: #F9F0F3; text-align: center;">
+                                        <h6 style="color: #2c3e50;">Average Delivery Time</h6>
+                                        <h4 style="color: #C31052;">{result_df['Predicted_Delivery_Time'].mean():.1f} mins</h4>
+                                    </div>
+                                    """, unsafe_allow_html=True)
                             with col2:
-                                st.metric("Longest Delivery", f"{result_df['Predicted_Delivery_Time'].max():.1f} mins")
+                                st.markdown(f"""
+                                    <div class="metric-card" style="background-color: #F9F0F3; text-align: center;">
+                                        <h6 style="color: #2c3e50;">Longest Delivery</h6>
+                                        <h3 style="color: #C31052;">{result_df['Predicted_Delivery_Time'].max():.1f} mins</h3>
+                                    </div>
+                                    """, unsafe_allow_html=True)
                         
                         # Download options
-                        st.markdown("---")
                         st.markdown("Download Results")
                         
                         csv = result_df.to_csv(index=False).encode('utf-8')

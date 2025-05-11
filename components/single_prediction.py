@@ -68,9 +68,10 @@ def single_prediction_tab():
                 st.success("Prediction Complete!")
                 with st.container():
                     st.markdown(f"""
-                    <div class="metric-card">
-                        <h4 style="color: #2c3e50; margin-top: 0;">Estimated Delivery Time</h4>
-                        <h1 style="color: #4CAF50; text-align: center;">{prediction:.2f} minutes</h1>
+                    <div class="metric-card" style="background-color: #F9F0F3; text-align: center;">
+                        <h4 style="color: #2c3e50;">Estimated Delivery Time</h4>
+                        <h1 style="color: #C31052;">{prediction:.2f} minutes</h1>
+                        <p style="color: #7f8c8d; ">Based on provided parameters</p>
                     </div>
                     """, unsafe_allow_html=True)
                 

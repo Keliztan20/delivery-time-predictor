@@ -9,12 +9,64 @@ def main():
     load_css()
     
     # App title
-    st.title('🚚 Delivery Time Predictor')
-    st.markdown("Predict delivery times using single input or batch processing")
+    st.markdown(
+        """
+        <h1 style="display: flex; align-items: center;">
+            <span>🚚༄ </span>
+            <span style="margin-left: 20px;">Delivery Time Predictor</span>
+        </h1>
+        <style>
+        @keyframes move {
+            0% { transform: translateX(0); }
+            50% { transform: translateX(10px); }
+            100% { transform: translateX(0); }
+        }
+        h1 span:first-child {
+            display: inline-block;
+            animation: move 1.5s infinite;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+    st.markdown("Predict delivery times using single delivery input or batch delivery processing")
     
-    # Create tabs
-    tab1, tab2 = st.tabs(["Single Prediction", "Batch Prediction"])
+    # Create tabs with plain text labels
+    tab1, tab2 = st.tabs(
+        [
+            "Single Prediction",
+            "Batch Prediction"
+        ]
+    )
     
+    # Add custom CSS for tabs
+    st.markdown(
+        """
+        <style>
+        div[data-testid="stTabs"] button {
+            font-size: 16px;
+            font-weight: bold;
+            color: black;
+            border-radius: 6px;
+            padding: 8px 16px;
+            margin-right: 5px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+        }
+        div[data-testid="stTabs"] button:hover {
+            background-color: #F9F0F3;
+            color: #C31052;
+            transform: translateY(3px);
+        }
+        div[data-testid="stTabs"] button[aria-selected="true"] {
+            background-color: #F9F0F3;
+            color: #C31052;
+            transform: translateY(0);
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
     with tab1:
         with st.container():
             single_prediction_tab()
