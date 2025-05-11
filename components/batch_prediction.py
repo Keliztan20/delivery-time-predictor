@@ -69,7 +69,7 @@ def batch_prediction_tab():
             - Motorcycle → 1
             - Scooter → 2
             - Electric Scooter → 3
-            - Others → 4
+            - Bicycle → 4
             """)
     
     uploaded_file = st.file_uploader(" ", type=["csv"], label_visibility="collapsed")
@@ -130,7 +130,7 @@ def batch_prediction_tab():
                 try:
                     if pd.api.types.is_numeric_dtype(value):
                         return value.astype(int)
-                    return value.map(lambda x: mapping.get(str(x).title(), default))
+                    return value.map(lambda x: mapping.get(str(x).replace('_', ' ').title(), default))
                 except Exception as e:
                     st.warning(f"Some values in {col_name} couldn't be converted, using defaults")
                     return pd.Series([default] * len(value))
@@ -139,25 +139,25 @@ def batch_prediction_tab():
             conversion_log = []
             
             if 'Weather_conditions' in df.columns:
-                original = df['Weather_conditions'].head(5).tolist()
+                original = df['Weather_conditions'].head(10).tolist()
                 df['Weather_conditions'] = safe_convert(df['Weather_conditions'], WEATHER_MAPPING, 1, 'Weather_conditions')
-                conversion_log.append(("Weather", original, df['Weather_conditions'].head(5).tolist()))
+                conversion_log.append(("Weather", original, df['Weather_conditions'].head(10).tolist()))
             
             if 'Road_traffic_density' in df.columns:
-                original = df['Road_traffic_density'].head(5).tolist()
+                original = df['Road_traffic_density'].head(10).tolist()
                 df['Road_traffic_density'] = safe_convert(df['Road_traffic_density'], TRAFFIC_MAPPING, 2, 'Traffic')
-                conversion_log.append(("Traffic", original, df['Road_traffic_density'].head(5).tolist()))
+                conversion_log.append(("Traffic", original, df['Road_traffic_density'].head(10).tolist()))
             
             if not has_performance_col:
                 if 'Vehicle_condition' in df.columns:
-                    original = df['Vehicle_condition'].head(5).tolist()
-                    df['Vehicle_condition'] = safe_convert(df['Vehicle_condition'], VEHICLE_CONDITION_MAPPING, 2, 'Condition')
-                    conversion_log.append(("Condition", original, df['Vehicle_condition'].head(5).tolist()))
+                    original = df['Vehicle_condition'].head(10).tolist()
+                    df['Vehicle_condition'] = safe_convert(df['Vehicle_condition'], VEHICLE_CONDITION_MAPPING, 2, 'Vehicle Condition')
+                    conversion_log.append(("Vehicle Condition", original, df['Vehicle_condition'].head(10).tolist()))
                 
                 if 'Type_of_vehicle' in df.columns:
-                    original = df['Type_of_vehicle'].head(5).tolist()
-                    df['Type_of_vehicle'] = safe_convert(df['Type_of_vehicle'], VEHICLE_TYPE_MAPPING, 1, 'Vehicle Type')
-                    conversion_log.append(("Vehicle Type", original, df['Type_of_vehicle'].head(5).tolist()))
+                    original = df['Type_of_vehicle'].head(10).tolist()
+                    df['Type_of_vehicle'] = safe_convert(df['Type_of_vehicle'].str.title(), VEHICLE_TYPE_MAPPING, 1, 'Vehicle Type')
+                    conversion_log.append(("Vehicle Type", original, df['Type_of_vehicle'].head(10).tolist()))
                 
                 df['Vehicle_performance_Impact'] = df['Vehicle_condition'] * df['Type_of_vehicle']
             
