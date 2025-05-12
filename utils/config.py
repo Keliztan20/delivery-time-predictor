@@ -1,6 +1,6 @@
 # Mapping dictionaries
-VEHICLE_TYPE_MAPPING = {'Motorcycle': 1, 'Scooter': 2, 'Electric Scooter': 3, 'Bicycle': 4}
-VEHICLE_CONDITION_MAPPING = {'Excellent': 1, 'Good': 2, 'Fair': 3, 'Poor': 4}
+VEHICLE_TYPE_MAPPING = {'Bicycle': 1, 'Electric Scooter': 2, 'Scooter': 3, 'Motorcycle': 4}
+VEHICLE_CONDITION_MAPPING = {'Poor': 1, 'Fair': 2, 'Good': 3, 'Excellent': 4}
 WEATHER_OPTIONS = ['Sunny', 'Cloudy', 'Windy', 'Fog', 'Sandstorms', 'Stormy']
 TRAFFIC_OPTIONS = ['Low', 'Medium', 'High', 'Jam']
 

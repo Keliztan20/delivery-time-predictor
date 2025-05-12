@@ -35,10 +35,10 @@ def single_prediction_tab():
         st.subheader("Delivery Parameters")
         col8, col9 = st.columns(2)
         with col8:
-            distance = st.number_input("Travel Distance (km)", 0.1, 100.0, 50.0, step=1.0)
+            distance = st.number_input("Travel Distance (km)", 0.1, 50.0, 20.0, step=1.0)
             multi_deliveries = st.radio("Multiple Deliveries", options=[1, 0], format_func=lambda x: "Yes" if x else "No", horizontal=True)
         with col9:
-            pickup_time = st.number_input("Pickup Time (minutes)", 0.1, 100.0, 20.0, step=1.0)
+            pickup_time = st.number_input("Pickup Time (minutes)", 0.1, 50.0, 5.0, step=1.0)
             festival = st.radio("Festival Period", options=[1, 0], format_func=lambda x: "Yes" if x else "No", horizontal=True)
         
         submitted = st.form_submit_button("🚚 Predict Delivery Time", use_container_width=True)
@@ -85,7 +85,7 @@ def single_prediction_tab():
                     with col11:
                         st.write(f"- Ratings: {ratings} {'★' * int(round(ratings))}")
                         st.write(f"- Vehicle Type: {vehicle_type}")
-                        st.write(f"- Vehicle Condition: {condition}")
+                        st.write(f"- Vehicle Condition: {VEHICLE_CONDITION_MAPPING[condition]}")
                         st.write(f"- Multiple Deliveries: {'Yes' if multi_deliveries else 'No'}")
                         st.write(f"- Festival: {'Yes' if festival else 'No'}")
                         st.write(f"- Vehicle Performance Impact: {VEHICLE_CONDITION_MAPPING[condition] * VEHICLE_TYPE_MAPPING[vehicle_type]}")

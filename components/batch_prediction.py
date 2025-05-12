@@ -58,18 +58,18 @@ def batch_prediction_tab():
         with map_cols[1]:
             st.markdown("""
             **Vehicle Condition:**
-            - Excellent → 1
-            - Good → 2
-            - Fair → 3
-            - Poor → 4
+            - Poor → 1
+            - Fair → 2
+            - Good → 3
+            - Excellent → 4
             """)
         with map_cols[2]:
             st.markdown("""
             **Vehicle Type:**
-            - Motorcycle → 1
-            - Scooter → 2
-            - Electric Scooter → 3
-            - Bicycle → 4
+            - Bicycle → 1
+            - Electric Scooter → 2
+            - Scooter → 3
+            - Motorcycle → 4
             """)
     # Sample data section
     with st.expander("Show / Download Sample CSV Template", expanded=False):
