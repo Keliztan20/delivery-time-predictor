@@ -71,7 +71,7 @@ def single_prediction_tab():
                     <div class="metric-card" style="background-color: #F9F0F3; text-align: center;">
                         <h4 style="color: #2c3e50;">Estimated Delivery Time</h4>
                         <h1 style="color: #C31052;">{prediction:.2f} minutes</h1>
-                        <p style="color: #7f8c8d; ">Based on provided parameters</p>
+                        <p style="color: #7f8c8d; ">Based on provided parameters & Trained Model</p>
                     </div>
                     """, unsafe_allow_html=True)
                 
