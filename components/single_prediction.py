@@ -35,7 +35,7 @@ def single_prediction_tab():
         st.subheader("Delivery Parameters")
         col8, col9 = st.columns(2)
         with col8:
-            distance = st.number_input("Travel Distance (km)", 0.1, 50.0, 20.0, step=1.0)
+            distance = st.number_input("Travel Distance (km)", 0.1, 100.0, 20.0, step=1.0)
             multi_deliveries = st.radio("Multiple Deliveries", options=[1, 0], format_func=lambda x: "Yes" if x else "No", horizontal=True)
         with col9:
             pickup_time = st.number_input("Pickup Time (minutes)", 0.1, 50.0, 5.0, step=1.0)
@@ -44,11 +44,7 @@ def single_prediction_tab():
         submitted = st.form_submit_button("🚚 Predict Delivery Time", use_container_width=True)
     
     if submitted:
-        # Validate pickup_time vs distance
-        if pickup_time >= distance: 
-            st.warning("Pickup time cannot be greater or equal than travel distance!! Please verify your inputs.")
-        else:
-            with st.spinner('Calculating...'):
+        with st.spinner('Calculating...'):
                 input_features = {
                     'Delivery_person_Age': age,
                     'Delivery_person_Ratings': ratings,
