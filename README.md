@@ -49,7 +49,7 @@ or
 ### 3. Run the application:
 
 ```bash
-streamlit Delivery Time Predictor App.py
+streamlit run app.py
 or
 `Delivery Time Predictor App.bat` double click
 ```
