@@ -6,7 +6,7 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
 
 # ---------------------- 1. Load & Split Dataset ----------------------
-def load_and_split_data(filepath, target_column='Time_taken', test_size=0.2, encoding='latin-1'):
+def load_and_split_data(filepath, target_column='Time_taken', test_size=0.1, encoding='latin-1'):
     df = pd.read_csv(filepath, encoding=encoding)
     train_df, test_df = train_test_split(df, test_size=test_size, random_state=42)
     train_df.to_csv('assets/train.csv', index=False)
