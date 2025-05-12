@@ -9,13 +9,12 @@ from utils.config import (
 
 @st.cache_resource(ttl=3600)
 def load_model():
-    # Replace model loading with this robust version
+    # Replace model loading with this robust version using MODEL_PATH
     try:
-        import joblib
-        model = joblib.load('assets/Delivery_time_predictor.joblib')
+        model = lgb.Booster(model_file=MODEL_PATH)
     except:
-        import lightgbm as lgb
-        model = lgb.Booster(model_file='assets/Delivery_time_predictor.txt')
+        st.error("Failed to load the model. Please check the MODEL_PATH or the model file.")
+        raise RuntimeError("Model loading failed.")
     return model
 
 def predict_single(model, input_features):
