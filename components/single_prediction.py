@@ -85,7 +85,7 @@ def single_prediction_tab():
                         st.write(f"- Distance: {distance} km")
                         st.write(f"- Pickup Time: {pickup_time} minutes")
                     with col11:
-                        st.write(f"- Ratings: {ratings} {'★' * int(ratings)}")
+                        st.write(f"- Ratings: {ratings} {'★' * int(round(ratings))}")
                         st.write(f"- Vehicle Type: {vehicle_type}")
                         st.write(f"- Vehicle Condition: {condition}")
                         st.write(f"- Multiple Deliveries: {multi_deliveries}")
