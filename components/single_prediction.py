@@ -33,15 +33,13 @@ def single_prediction_tab():
             vehicle_type = st.selectbox("Type of Vehicle", list(VEHICLE_TYPE_MAPPING.keys()))
         
         st.subheader("Delivery Parameters")
-        col7, col8, col9 = st.columns(3)
-        with col7:
-            multi_deliveries = st.slider("Multiple Deliveries", 1, 5, 1)
+        col8, col9 = st.columns(2)
         with col8:
             distance = st.number_input("Travel Distance (km)", 0.1, 100.0, 50.0, step=1.0)
+            multi_deliveries = st.radio("Multiple Deliveries", options=[1, 0], format_func=lambda x: "Yes" if x else "No", horizontal=True)
         with col9:
             pickup_time = st.number_input("Pickup Time (minutes)", 0.1, 100.0, 20.0, step=1.0)
-        
-        festival = st.checkbox("During Festival Period", False)
+            festival = st.radio("Festival Period", options=[1, 0], format_func=lambda x: "Yes" if x else "No", horizontal=True)
         
         submitted = st.form_submit_button("🚚 Predict Delivery Time", use_container_width=True)
     
@@ -57,7 +55,7 @@ def single_prediction_tab():
                     'Weather_conditions': WEATHER_OPTIONS.index(weather) + 1,
                     'Road_traffic_density': TRAFFIC_OPTIONS.index(traffic) + 1,
                     'Vehicle_performance_Impact': VEHICLE_CONDITION_MAPPING[condition] * VEHICLE_TYPE_MAPPING[vehicle_type],
-                    'multiple_deliveries': multi_deliveries,
+                    'multiple_deliveries': 1 if multi_deliveries else 0,
                     'Festival': 1 if festival else 0,
                     'Travel_Distance': distance,
                     'pickup_time': pickup_time
@@ -88,6 +86,6 @@ def single_prediction_tab():
                         st.write(f"- Ratings: {ratings} {'★' * int(round(ratings))}")
                         st.write(f"- Vehicle Type: {vehicle_type}")
                         st.write(f"- Vehicle Condition: {condition}")
-                        st.write(f"- Multiple Deliveries: {multi_deliveries}")
+                        st.write(f"- Multiple Deliveries: {'Yes' if multi_deliveries else 'No'}")
                         st.write(f"- Festival: {'Yes' if festival else 'No'}")
                         st.write(f"- Vehicle Performance Impact: {VEHICLE_CONDITION_MAPPING[condition] * VEHICLE_TYPE_MAPPING[vehicle_type]}")

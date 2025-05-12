@@ -30,7 +30,7 @@ def batch_prediction_tab():
             st.markdown("""
             - `Delivery_person_Age` (18-60)
             - `Delivery_person_Ratings` (1.0-5.0)
-            - `multiple_deliveries` (1-4)
+            - `multiple_deliveries` (0 or 1)
             - `Festival` (0 or 1)
             """)
         with req_cols[1]:
@@ -80,7 +80,7 @@ def batch_prediction_tab():
             'Road_traffic_density': ['Medium', 'High', 'Low'],
             'Vehicle_condition': ['Good', 'Fair', 'Excellent'],
             'Type_of_vehicle': ['Motorcycle', 'Scooter', 'Electric Scooter'],
-            'multiple_deliveries': [1, 2, 0],
+            'multiple_deliveries': [1, 0, 1],
             'Festival': [0, 1, 0],
             'Travel_Distance': [5.5, 12.3, 8.1],
             'pickup_time': [30, 45, 15]
@@ -136,6 +136,15 @@ def batch_prediction_tab():
             
             # Convert text columns to numerical
             conversion_log = []
+
+            if 'multiple_deliveries' in df.columns:
+                original = df['multiple_deliveries'].head(10).tolist()
+                # Convert to 0 or 1 based on your definition
+                df['multiple_deliveries'] = df['multiple_deliveries'] + 1
+                df['multiple_deliveries'] = df['multiple_deliveries'] .apply(
+                    lambda x: 1 if int(float(x)) > 1 else 0
+                )
+                conversion_log.append(("Multiple Deliveries", original, df['multiple_deliveries'].head(10).tolist()))
             
             if 'Weather_conditions' in df.columns:
                 original = df['Weather_conditions'].head(10).tolist()
