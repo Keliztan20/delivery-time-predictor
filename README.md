@@ -44,20 +44,12 @@ or
 
 dependencies.bat double click
 ```
-### 3. Save Model:
+
+### 3. Run the application:
 
 ```bash
-python assets\LightGBM.py
-```
-
-### 4. Run the application:
-
-```bash
-streamlit run app.py
-```
-### 5. Alternate Method 3 & 4:
-
-```bash
-run_app.bat double click
+streamlit Delivery Time Predictor App.py
+or
+Delivery Time Predictor App.bat double click
 ```
 
