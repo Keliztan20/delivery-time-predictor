@@ -1,6 +1,7 @@
 # 🚚 Delivery Time Predictor
 
-![image](https://github.com/user-attachments/assets/db4706d8-4d5c-4564-aa72-08abdb378ce3) ![image](https://github.com/user-attachments/assets/60f0f4f0-bee3-4f03-92ba-bd9842ffc333)
+![Single Prediction SS](https://github.com/user-attachments/assets/70b6f072-a5d6-4304-9077-3c08752fc8b3) ![Batch Prediction SS](https://github.com/user-attachments/assets/5ec28306-7a98-469e-9971-a47a6f679365) 
+
 *A Streamlit web application for predicting delivery times using machine learning*
 
 ## 🌟 Features
@@ -42,7 +43,7 @@ pip install -r requirements.txt
 
 or
 
-dependencies.bat double click
+`dependencies.bat` double click
 ```
 
 ### 3. Run the application:
@@ -50,6 +51,6 @@ dependencies.bat double click
 ```bash
 streamlit Delivery Time Predictor App.py
 or
-Delivery Time Predictor App.bat double click
+`Delivery Time Predictor App.bat` double click
 ```
 
