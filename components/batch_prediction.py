@@ -265,7 +265,7 @@ def batch_prediction_tab():
                                     """, unsafe_allow_html=True)
                         
                         # Download options
-                        st.markdown("### Download Results")
+                        st.markdown("Download Results")
                         
                         csv = result_df.to_csv(index=False).encode('utf-8')
                         st.download_button(
