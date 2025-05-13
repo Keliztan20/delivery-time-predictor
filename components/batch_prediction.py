@@ -167,13 +167,6 @@ def batch_prediction_tab():
             
             # Convert text columns to numerical
             conversion_log = []
-
-            if 'multiple_deliveries' in df.columns:
-                original = df['multiple_deliveries'].head(10).tolist()
-                df['multiple_deliveries'] = df['multiple_deliveries'].apply(
-                    lambda x: 1 if int(float(x)) > 0 else 0
-                )
-                conversion_log.append(("Multiple Deliveries", original, df['multiple_deliveries'].head(10).tolist()))
             
             if 'Weather_conditions' in df.columns:
                 original = df['Weather_conditions'].head(10).tolist()
@@ -220,7 +213,8 @@ def batch_prediction_tab():
                     'Delivery_person_Age', 'Delivery_person_Ratings',
                     'Weather_conditions', 'Road_traffic_density',
                     'Vehicle_performance_Impact', 'is_rush_hour',
-                    'day_of_week', 'rush_day'
+                    'day_of_week', 'rush_day', 'Festival',
+                    'multiple_deliveries', 'Travel_Distance',
                 ]
                 st.dataframe(df[preview_cols].head(5))
             

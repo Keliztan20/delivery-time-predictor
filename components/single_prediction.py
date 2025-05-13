@@ -46,7 +46,7 @@ def single_prediction_tab():
         col8, col9 = st.columns(2)
         with col8:
             distance = st.number_input("Travel Distance (km)", 0.1, 100.0, 20.0, step=1.0)
-            multi_deliveries = st.radio("Multiple Deliveries", options=[1, 0], format_func=lambda x: "Yes" if x else "No", horizontal=True)
+            multi_deliveries = st.slider("Multiple Deliveries (0-3)", 0, 3, 0, step=1)
         with col9:
             pickup_time = st.number_input("Pickup Time (minutes)", 0.1, 50.0, 5.0, step=1.0)
             festival = st.radio("Festival Period", options=[1, 0], format_func=lambda x: "Yes" if x else "No", horizontal=True)
