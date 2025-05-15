@@ -29,7 +29,8 @@
 - Cached predictions for performance
 
 ### Setup Instructions
-### 1. Clone the repository:
+
+### 1. Clone the repository (run this code to the command prompt):
 
 ```bash
 git clone https://github.com/Keliztan20/delivery-time-predictor.git
