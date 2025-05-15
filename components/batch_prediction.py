@@ -193,7 +193,7 @@ def batch_prediction_tab():
             
             # Process timing features
             df['is_rush_hour'] = df['Time_Ordered'].apply(is_rush_hour).astype(int)
-            df['Order_Date'] = pd.to_datetime(df['Order_Date'])
+            df['Order_Date'] = pd.to_datetime(df['Order_Date'], format='%d/%m/%Y')
             df['day_of_week'] = df['Order_Date'].dt.weekday  # Monday=0, Sunday=6
             df['rush_day'] = df['is_rush_hour'] + df['day_of_week']
             
