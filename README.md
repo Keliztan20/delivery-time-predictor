@@ -28,9 +28,9 @@
 - Responsive Streamlit UI
 - Cached predictions for performance
 
-### Setup Instructions
+### Setup Instructions (run this code to the command prompt)
 
-### 1. Clone the repository (run this code to the command prompt):
+### 1. Clone the repository:
 
 ```bash
 git clone https://github.com/Keliztan20/delivery-time-predictor.git
