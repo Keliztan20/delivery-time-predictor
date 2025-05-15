@@ -36,23 +36,9 @@
 git clone https://github.com/Keliztan20/delivery-time-predictor.git
 cd delivery-time-predictor
 ```
-
-### 2. Install dependencies:
-
-```bash
-pip install --upgrade pip
-pip install -r requirements.txt
-
-or
-
-`dependencies.bat` double click
-```
-
 ### 3. Run the application:
 
 ```bash
-streamlit run app.py
-or
-`Delivery Time Predictor App.bat` double click
+`run_app.bat` double click
 ```
 
