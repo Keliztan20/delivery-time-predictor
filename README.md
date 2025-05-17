@@ -1,6 +1,7 @@
 # 🚚༄ Delivery Time Predictor
 
-![Single Prediction SS](https://github.com/user-attachments/assets/75938302-0e16-43fe-a045-ec325c30a8fa) ![Batch Prediction SS](https://github.com/user-attachments/assets/1eef60eb-3d06-44cf-91ee-86facc0a6fd0)
+![Single Prediction SS](https://github.com/user-attachments/assets/75938302-0e16-43fe-a045-ec325c30a8fa) ![Batch Prediction SS](https://github.com/user-attachments/assets/a9985361-58c6-4406-94a2-d8d62613fe09)
+
 
 
 *A Streamlit web application for predicting delivery times using machine learning*
