@@ -240,26 +240,10 @@ def batch_prediction_tab():
                         with st.expander("Prediction Results", expanded=True):
                             st.dataframe(result_df.head())
                             
-                            col1, col2 = st.columns(2)
-                            with col1:
-                                st.markdown(f"""
-                                    <div class="metric-card" style="background-color: #F9F0F3; text-align: center;">
-                                        <h6 style="color: #2c3e50;">Average Delivery Time</h6>
-                                        <h4 style="color: #C31052; font-weight: bold;">{result_df['Predicted_Delivery_Time'].mean():.1f} mins</h4>
-                                        <p style="color: #7f8c8d; font-size: 12px;">Based on provided parameters & Trained Model</p>
-                                    </div>
-                                    """, unsafe_allow_html=True)
-                            with col2:
-                                st.markdown(f"""
-                                    <div class="metric-card" style="background-color: #F9F0F3; text-align: center;">
-                                        <h6 style="color: #2c3e50;">Longest Delivery Time</h6>
-                                        <h4 style="color: #C31052; font-weight: bold;">{result_df['Predicted_Delivery_Time'].max():.1f} mins</h4>
-                                        <p style="color: #7f8c8d; font-size: 12px;">Based on provided parameters & Trained Model</p>
-                                    </div>
-                                    """, unsafe_allow_html=True)
+
                         
                         # Download options
-                        st.markdown("Download Results")
+                        st.markdown("Download Full Prediction Results")
                         
                         csv = result_df.to_csv(index=False).encode('utf-8')
                         st.download_button(
