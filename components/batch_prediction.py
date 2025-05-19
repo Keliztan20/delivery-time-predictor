@@ -46,7 +46,7 @@ def batch_prediction_tab():
             - `Delivery_person_Ratings` (1.0-5.0)
             - `multiple_deliveries` (0 or 1)
             - `Festival` (0 or 1)
-            - `Order_Date`: Date in YYYY-MM-DD format
+            
             """)
         with req_cols[1]:
             st.markdown("""
@@ -54,9 +54,9 @@ def batch_prediction_tab():
             - `pickup_time` (minutes)
             - `Weather_conditions` (text/number)
             - `Road_traffic_density` (text/number)
-            - `Time_Ordered`: HH:MM format (24-hour)
             """)
-        st.markdown("**Note:** As `Order_Date` and `Time_Ordered` are missing, the current date and time will be used.")
+        st.markdown("- Either `Order_Date` and `Time_Ordered` OR `rush_day`")
+        st.markdown("**Note:** If `rush_day` is not provided, it will be calculated from `Order_Date` and `Time_Ordered`.")
         st.markdown("---")
         st.markdown("**Text-to-Number Conversion Mappings:**")
         
@@ -143,17 +143,13 @@ def batch_prediction_tab():
                 st.error(f"Missing required columns: {', '.join(missing_cols)}")
                 st.stop()
             
-            # Add default timing columns if not provided
-            current_date = datetime.now().strftime('%Y-%m-%d')
-            current_time = datetime.now().strftime('%H:%M')
+            # Check for timing features
+            has_rush_day = 'rush_day' in df.columns
+            has_timing_components = all(col in df.columns for col in ['Order_Date', 'Time_Ordered'])
             
-            if 'Order_Date' not in df.columns:
-                df['Order_Date'] = current_date
-                st.warning("Using current date for Order_Date (column not found)")
-            
-            if 'Time_Ordered' not in df.columns:
-                df['Time_Ordered'] = current_time
-                st.warning("Using current time for Time_Ordered (column not found)")
+            if not (has_rush_day or has_timing_components):
+                st.error("Missing timing data: Provide either 'rush_day' OR both 'Order_Date' and 'Time_Ordered'")
+                st.stop()
             
             # Conversion functions with validation
             def safe_convert(value, mapping, default, col_name):
@@ -191,11 +187,31 @@ def batch_prediction_tab():
                 
                 df['Vehicle_performance_Impact'] = df['Vehicle_condition'] * df['Type_of_vehicle']
             
-            # Process timing features
-            df['is_rush_hour'] = df['Time_Ordered'].apply(is_rush_hour).astype(int)
-            df['Order_Date'] = pd.to_datetime(df['Order_Date'], format='%d/%m/%Y')
-            df['day_of_week'] = df['Order_Date'].dt.weekday  # Monday=0, Sunday=6
-            df['rush_day'] = df['is_rush_hour'] + df['day_of_week']
+            # Process timing features if rush_day not provided
+            if not has_rush_day:
+                current_date = datetime.now().strftime('%Y-%m-%d')
+                current_time = datetime.now().strftime('%H:%M')
+                
+                if 'Order_Date' not in df.columns:
+                    df['Order_Date'] = current_date
+                    st.warning("Using current date for Order_Date (column not found)")
+                
+                if 'Time_Ordered' not in df.columns:
+                    df['Time_Ordered'] = current_time
+                    st.warning("Using current time for Time_Ordered (column not found)")
+                
+                df['is_rush_hour'] = df['Time_Ordered'].apply(is_rush_hour).astype(int)
+                df['Order_Date'] = pd.to_datetime(df['Order_Date'], errors='coerce')
+                
+                # Handle invalid dates
+                if df['Order_Date'].isnull().any():
+                    st.warning("Some dates couldn't be parsed, using current date for those rows")
+                    df.loc[df['Order_Date'].isnull(), 'Order_Date'] = pd.to_datetime(current_date)
+                
+                df['day_of_week'] = df['Order_Date'].dt.weekday  # Monday=0, Sunday=6
+                df['rush_day'] = df['is_rush_hour'] + df['day_of_week']
+            else:
+                st.info("Using provided 'rush_day' column instead of calculating from date/time")
             
             # Show conversion log
             if conversion_log:
@@ -212,10 +228,14 @@ def batch_prediction_tab():
                 preview_cols = [
                     'Delivery_person_Age', 'Delivery_person_Ratings',
                     'Weather_conditions', 'Road_traffic_density',
-                    'Vehicle_performance_Impact', 'is_rush_hour',
-                    'day_of_week', 'rush_day', 'Festival',
-                    'multiple_deliveries', 'Travel_Distance',
+                    'Vehicle_performance_Impact', 'rush_day',
+                    'Festival', 'multiple_deliveries', 'Travel_Distance',
                 ]
+                
+                # Add timing columns if we calculated them
+                if not has_rush_day:
+                    preview_cols.extend(['is_rush_hour', 'day_of_week'])
+                
                 st.dataframe(df[preview_cols].head(5))
             
             # Prediction section
@@ -239,8 +259,6 @@ def batch_prediction_tab():
                         # Results display
                         with st.expander("Prediction Results", expanded=True):
                             st.dataframe(result_df.head())
-                            
-
                         
                         # Download options
                         st.markdown("Download Full Prediction Results")
